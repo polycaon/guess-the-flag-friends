@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { toast } from 'sonner';
 import { Button } from "@/components/ui/button";
@@ -21,34 +20,82 @@ const COUNTRIES = {
     { name: "Brazil", code: "br", hint: "Famous for carnival and soccer" },
     { name: "Canada", code: "ca", hint: "Known for maple syrup" },
     { name: "Australia", code: "au", hint: "Home to kangaroos" },
-    // ... Adding more easy countries here
+    { name: "China", code: "cn", hint: "Home of the Great Wall" },
+    { name: "Russia", code: "ru", hint: "Largest country in the world" },
+    { name: "India", code: "in", hint: "Land of the Taj Mahal" },
+    { name: "Germany", code: "de", hint: "Known for Oktoberfest" },
+    { name: "Italy", code: "it", hint: "Famous for pizza and pasta" },
+    { name: "Spain", code: "es", hint: "Known for flamenco dance" },
+    { name: "Mexico", code: "mx", hint: "Known for tacos and pyramids" },
+    { name: "South Korea", code: "kr", hint: "Land of K-pop" },
   ],
   moderate: [
-    { name: "Spain", code: "es", hint: "Known for flamenco dance" },
-    { name: "Italy", code: "it", hint: "Famous for pizza and pasta" },
-    { name: "Germany", code: "de", hint: "Known for automobiles" },
-    { name: "India", code: "in", hint: "Land of the Taj Mahal" },
-    { name: "Mexico", code: "mx", hint: "Known for tacos and pyramids" },
-    // ... Adding more moderate countries here
+    { name: "Argentina", code: "ar", hint: "Land of tango" },
+    { name: "South Africa", code: "za", hint: "Rainbow Nation" },
+    { name: "Egypt", code: "eg", hint: "Land of the pyramids" },
+    { name: "Thailand", code: "th", hint: "Land of Smiles" },
+    { name: "Turkey", code: "tr", hint: "Where Europe meets Asia" },
+    { name: "Greece", code: "gr", hint: "Birthplace of democracy" },
+    { name: "Sweden", code: "se", hint: "Land of the midnight sun" },
+    { name: "Poland", code: "pl", hint: "Known for pierogi" },
+    { name: "Netherlands", code: "nl", hint: "Land of tulips" },
+    { name: "Switzerland", code: "ch", hint: "Known for chocolate and Alps" },
+    { name: "Belgium", code: "be", hint: "Famous for waffles" },
+    { name: "Austria", code: "at", hint: "Home of Mozart" },
+    { name: "Ireland", code: "ie", hint: "Emerald Isle" },
+    { name: "New Zealand", code: "nz", hint: "Land of the Kiwis" },
+    { name: "Portugal", code: "pt", hint: "Famous for port wine" }
   ],
   difficult: [
-    { name: "Thailand", code: "th", hint: "Land of Smiles" },
-    { name: "Egypt", code: "eg", hint: "Land of the pyramids" },
-    { name: "Turkey", code: "tr", hint: "Where Europe meets Asia" },
-    { name: "South Africa", code: "za", hint: "Rainbow Nation" },
-    // ... Adding more difficult countries here
+    { name: "Vietnam", code: "vn", hint: "Famous for Ha Long Bay" },
+    { name: "Malaysia", code: "my", hint: "Home of the Petronas Towers" },
+    { name: "Ukraine", code: "ua", hint: "Known for its wheat fields" },
+    { name: "Croatia", code: "hr", hint: "Land of a thousand islands" },
+    { name: "Morocco", code: "ma", hint: "Known for its bazaars" },
+    { name: "Finland", code: "fi", hint: "Land of the Northern Lights" },
+    { name: "Denmark", code: "dk", hint: "Home of LEGO" },
+    { name: "Czech Republic", code: "cz", hint: "Known for its castles" },
+    { name: "Romania", code: "ro", hint: "Home of Dracula's castle" },
+    { name: "Hungary", code: "hu", hint: "Known for goulash" },
+    { name: "Norway", code: "no", hint: "Land of the fjords" },
+    { name: "Singapore", code: "sg", hint: "Garden City" },
+    { name: "Chile", code: "cl", hint: "Land of the Andes" },
+    { name: "Colombia", code: "co", hint: "Known for coffee" },
+    { name: "Philippines", code: "ph", hint: "Pearl of the Orient" }
   ],
   hard: [
     { name: "Kazakhstan", code: "kz", hint: "Largest landlocked country" },
     { name: "Uruguay", code: "uy", hint: "Known for mate tea" },
-    { name: "Vietnam", code: "vn", hint: "Famous for Ha Long Bay" },
-    // ... Adding more hard countries here
+    { name: "Slovenia", code: "si", hint: "Land of caves" },
+    { name: "Slovakia", code: "sk", hint: "Heart of Europe" },
+    { name: "Estonia", code: "ee", hint: "Digital society pioneer" },
+    { name: "Latvia", code: "lv", hint: "Known for Art Nouveau" },
+    { name: "Lithuania", code: "lt", hint: "Land of basketball" },
+    { name: "Belarus", code: "by", hint: "Land of lakes" },
+    { name: "Azerbaijan", code: "az", hint: "Land of Fire" },
+    { name: "Georgia", code: "ge", hint: "Land of wine origin" },
+    { name: "Armenia", code: "am", hint: "Land of churches" },
+    { name: "Moldova", code: "md", hint: "Known for wine cellars" },
+    { name: "Montenegro", code: "me", hint: "Black Mountain" },
+    { name: "North Macedonia", code: "mk", hint: "Land of lakes" },
+    { name: "Albania", code: "al", hint: "Land of eagles" }
   ],
   impossible: [
     { name: "Kiribati", code: "ki", hint: "Pacific island nation" },
     { name: "Tuvalu", code: "tv", hint: "Smallest UN member state" },
     { name: "Vanuatu", code: "vu", hint: "South Pacific archipelago" },
-    // ... Adding more impossible countries here
+    { name: "Palau", code: "pw", hint: "Known for jellyfish lake" },
+    { name: "Nauru", code: "nr", hint: "Smallest island nation" },
+    { name: "Marshall Islands", code: "mh", hint: "Made of coral atolls" },
+    { name: "Micronesia", code: "fm", hint: "Scattered island nation" },
+    { name: "Saint Lucia", code: "lc", hint: "The Helen of the West Indies" },
+    { name: "Saint Vincent", code: "vc", hint: "Land of the Grenadines" },
+    { name: "Grenada", code: "gd", hint: "Island of Spice" },
+    { name: "Antigua and Barbuda", code: "ag", hint: "Land of 365 beaches" },
+    { name: "Dominica", code: "dm", hint: "Nature Isle" },
+    { name: "Saint Kitts and Nevis", code: "kn", hint: "Mother Colony" },
+    { name: "Samoa", code: "ws", hint: "Treasured islands" },
+    { name: "Tonga", code: "to", hint: "Friendly Islands" }
   ]
 };
 
@@ -117,11 +164,15 @@ const Index = () => {
       setScore(prev => prev + 1);
       toast.success("Correct! Well done!", {
         duration: 2000,
+        position: "top-center",
+        className: "text-xl font-bold"
       });
       generateQuestion();
     } else {
       toast.error("Try again!", {
         duration: 2000,
+        position: "top-center",
+        className: "text-xl font-bold"
       });
     }
   };
@@ -131,6 +182,8 @@ const Index = () => {
       setShowHint(true);
       toast.info(currentFlag.hint, {
         duration: 4000,
+        position: "top-center",
+        className: "text-xl font-bold"
       });
     }
   };
