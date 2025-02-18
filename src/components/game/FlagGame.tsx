@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { toast } from 'sonner';
 import { Button } from "@/components/ui/button";
@@ -54,14 +53,14 @@ export const FlagGame = ({ difficulty, onBack }: FlagGameProps) => {
       setScore(prev => prev + 1);
       toast.success("Correct! Well done!", {
         duration: 2000,
-        position: "top-center",
+        position: "bottom-center",
         className: "text-xl font-bold"
       });
       generateQuestion();
     } else {
       toast.error("Try again!", {
         duration: 2000,
-        position: "top-center",
+        position: "bottom-center",
         className: "text-xl font-bold"
       });
     }
@@ -72,7 +71,7 @@ export const FlagGame = ({ difficulty, onBack }: FlagGameProps) => {
       setShowHint(true);
       toast.info(currentFlag.hint, {
         duration: 4000,
-        position: "top-center",
+        position: "bottom-center",
         className: "text-xl font-bold"
       });
     }

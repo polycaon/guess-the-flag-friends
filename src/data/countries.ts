@@ -18,9 +18,7 @@ export const COUNTRIES: Record<string, Flag[]> = {
     { name: "Spain", code: "es", hint: "Known for flamenco dance" },
     { name: "Mexico", code: "mx", hint: "Known for tacos and pyramids" },
     { name: "South Korea", code: "kr", hint: "Land of K-pop" },
-  ],
-  moderate: [
-    { name: "Argentina", code: "ar", hint: "Land of tango" },
+    // Adding more common countries to easy level
     { name: "South Africa", code: "za", hint: "Rainbow Nation" },
     { name: "Egypt", code: "eg", hint: "Land of the pyramids" },
     { name: "Thailand", code: "th", hint: "Land of Smiles" },
@@ -30,32 +28,34 @@ export const COUNTRIES: Record<string, Flag[]> = {
     { name: "Poland", code: "pl", hint: "Known for pierogi" },
     { name: "Netherlands", code: "nl", hint: "Land of tulips" },
     { name: "Switzerland", code: "ch", hint: "Known for chocolate and Alps" },
-    { name: "Belgium", code: "be", hint: "Famous for waffles" },
-    { name: "Austria", code: "at", hint: "Home of Mozart" },
+    { name: "Belgium", code: "be", hint: "Famous for waffles" }
+  ],
+  moderate: [
+    { name: "Argentina", code: "ar", hint: "Land of tango" },
     { name: "Ireland", code: "ie", hint: "Emerald Isle" },
     { name: "New Zealand", code: "nz", hint: "Land of the Kiwis" },
-    { name: "Portugal", code: "pt", hint: "Famous for port wine" }
-  ],
-  difficult: [
-    { name: "Vietnam", code: "vn", hint: "Famous for Ha Long Bay" },
-    { name: "Malaysia", code: "my", hint: "Home of the Petronas Towers" },
-    { name: "Ukraine", code: "ua", hint: "Known for its wheat fields" },
-    { name: "Croatia", code: "hr", hint: "Land of a thousand islands" },
-    { name: "Morocco", code: "ma", hint: "Known for its bazaars" },
-    { name: "Finland", code: "fi", hint: "Land of the Northern Lights" },
+    { name: "Portugal", code: "pt", hint: "Famous for port wine" },
+    { name: "Austria", code: "at", hint: "Home of Mozart" },
     { name: "Denmark", code: "dk", hint: "Home of LEGO" },
+    { name: "Finland", code: "fi", hint: "Land of the Northern Lights" },
+    { name: "Norway", code: "no", hint: "Land of the fjords" },
+    { name: "Singapore", code: "sg", hint: "Garden City" },
+    { name: "Malaysia", code: "my", hint: "Home of the Petronas Towers" },
+    { name: "Philippines", code: "ph", hint: "Pearl of the Orient" },
+    { name: "Vietnam", code: "vn", hint: "Famous for Ha Long Bay" },
+    { name: "Chile", code: "cl", hint: "Land of the Andes" },
+    { name: "Colombia", code: "co", hint: "Known for coffee" },
+    { name: "Peru", code: "pe", hint: "Home of Machu Picchu" },
+    { name: "Ukraine", code: "ua", hint: "Known for its wheat fields" },
     { name: "Czech Republic", code: "cz", hint: "Known for its castles" },
     { name: "Romania", code: "ro", hint: "Home of Dracula's castle" },
     { name: "Hungary", code: "hu", hint: "Known for goulash" },
-    { name: "Norway", code: "no", hint: "Land of the fjords" },
-    { name: "Singapore", code: "sg", hint: "Garden City" },
-    { name: "Chile", code: "cl", hint: "Land of the Andes" },
-    { name: "Colombia", code: "co", hint: "Known for coffee" },
-    { name: "Philippines", code: "ph", hint: "Pearl of the Orient" }
+    { name: "Morocco", code: "ma", hint: "Known for its bazaars" }
   ],
-  hard: [
+  difficult: [
     { name: "Kazakhstan", code: "kz", hint: "Largest landlocked country" },
     { name: "Uruguay", code: "uy", hint: "Known for mate tea" },
+    { name: "Croatia", code: "hr", hint: "Land of a thousand islands" },
     { name: "Slovenia", code: "si", hint: "Land of caves" },
     { name: "Slovakia", code: "sk", hint: "Heart of Europe" },
     { name: "Estonia", code: "ee", hint: "Digital society pioneer" },
@@ -67,8 +67,19 @@ export const COUNTRIES: Record<string, Flag[]> = {
     { name: "Armenia", code: "am", hint: "Land of churches" },
     { name: "Moldova", code: "md", hint: "Known for wine cellars" },
     { name: "Montenegro", code: "me", hint: "Black Mountain" },
-    { name: "North Macedonia", code: "mk", hint: "Land of lakes" },
-    { name: "Albania", code: "al", hint: "Land of eagles" }
+    { name: "North Macedonia", code: "mk", hint: "Land of lakes" }
+  ],
+  hard: [
+    { name: "Albania", code: "al", hint: "Land of eagles" },
+    { name: "Bosnia and Herzegovina", code: "ba", hint: "Land of bridges" },
+    { name: "Cyprus", code: "cy", hint: "Island of Aphrodite" },
+    { name: "Malta", code: "mt", hint: "Heart of the Mediterranean" },
+    { name: "Luxembourg", code: "lu", hint: "European banking center" },
+    { name: "Iceland", code: "is", hint: "Land of fire and ice" },
+    { name: "Andorra", code: "ad", hint: "Pyrenean paradise" },
+    { name: "Monaco", code: "mc", hint: "Home of the Grand Prix" },
+    { name: "Liechtenstein", code: "li", hint: "Alpine principality" },
+    { name: "San Marino", code: "sm", hint: "Oldest republic in the world" }
   ],
   impossible: [
     { name: "Kiribati", code: "ki", hint: "Pacific island nation" },
@@ -77,14 +88,6 @@ export const COUNTRIES: Record<string, Flag[]> = {
     { name: "Palau", code: "pw", hint: "Known for jellyfish lake" },
     { name: "Nauru", code: "nr", hint: "Smallest island nation" },
     { name: "Marshall Islands", code: "mh", hint: "Made of coral atolls" },
-    { name: "Micronesia", code: "fm", hint: "Scattered island nation" },
-    { name: "Saint Lucia", code: "lc", hint: "The Helen of the West Indies" },
-    { name: "Saint Vincent", code: "vc", hint: "Land of the Grenadines" },
-    { name: "Grenada", code: "gd", hint: "Island of Spice" },
-    { name: "Antigua and Barbuda", code: "ag", hint: "Land of 365 beaches" },
-    { name: "Dominica", code: "dm", hint: "Nature Isle" },
-    { name: "Saint Kitts and Nevis", code: "kn", hint: "Mother Colony" },
-    { name: "Samoa", code: "ws", hint: "Treasured islands" },
-    { name: "Tonga", code: "to", hint: "Friendly Islands" }
+    { name: "Micronesia", code: "fm", hint: "Scattered island nation" }
   ]
 };
