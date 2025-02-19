@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import { toast, type Position } from 'sonner';
+import { toast, type ToastT } from 'sonner';
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import confetti from 'canvas-confetti';
@@ -47,7 +47,7 @@ export const FlagGame = ({ difficulty, onBack }: FlagGameProps) => {
     
     const toastOptions = {
       duration: 2000,
-      position: 'bottom-center' as Position,
+      position: 'bottom-center',
       style: {
         marginBottom: '4rem',
         marginTop: '2rem'
@@ -79,7 +79,7 @@ export const FlagGame = ({ difficulty, onBack }: FlagGameProps) => {
       setShowHint(true);
       toast.info(currentFlag.hint, {
         duration: 4000,
-        position: 'bottom-center' as Position,
+        position: 'bottom-center',
         style: {
           marginBottom: '4rem',
           marginTop: '2rem'
