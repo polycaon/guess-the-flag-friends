@@ -45,6 +45,15 @@ export const FlagGame = ({ difficulty, onBack }: FlagGameProps) => {
   const handleGuess = (flag: Flag) => {
     setAttempts(prev => prev + 1);
     
+    const toastOptions = {
+      duration: 2000,
+      position: "bottom-center",
+      style: {
+        marginBottom: '4rem',
+        marginTop: '2rem'
+      }
+    };
+    
     if (flag.code === currentFlag?.code) {
       confetti({
         particleCount: 100,
@@ -53,16 +62,14 @@ export const FlagGame = ({ difficulty, onBack }: FlagGameProps) => {
       });
       setScore(prev => prev + 1);
       toast.success("Correct! Well done!", {
-        duration: 2000,
-        position: "bottom-center",
-        className: "text-xl font-bold bg-green-100 border-2 border-green-500 rounded-xl shadow-lg p-4 mt-4"
+        ...toastOptions,
+        className: "text-xl font-bold bg-green-100 border-2 border-green-500 rounded-xl shadow-lg p-4"
       });
       generateQuestion();
     } else {
       toast.error("Try again!", {
-        duration: 2000,
-        position: "bottom-center",
-        className: "text-xl font-bold bg-red-100 border-2 border-red-500 rounded-xl shadow-lg p-4 mt-4"
+        ...toastOptions,
+        className: "text-xl font-bold bg-red-100 border-2 border-red-500 rounded-xl shadow-lg p-4"
       });
     }
   };
@@ -73,7 +80,11 @@ export const FlagGame = ({ difficulty, onBack }: FlagGameProps) => {
       toast.info(currentFlag.hint, {
         duration: 4000,
         position: "bottom-center",
-        className: "text-xl font-bold bg-blue-100 border-2 border-blue-500 rounded-xl shadow-lg p-4 mt-4"
+        style: {
+          marginBottom: '4rem',
+          marginTop: '2rem'
+        },
+        className: "text-xl font-bold bg-blue-100 border-2 border-blue-500 rounded-xl shadow-lg p-4"
       });
     }
   };
@@ -97,7 +108,7 @@ export const FlagGame = ({ difficulty, onBack }: FlagGameProps) => {
           {currentFlag && (
             <img
               src={`https://flagcdn.com/w320/${currentFlag.code}.png`}
-              alt="Flag to guess"
+              alt={`Flag of ${currentFlag.name}`}
               className="mx-auto rounded-xl shadow-lg mb-6 floating"
               style={{ maxWidth: '320px' }}
             />
@@ -105,14 +116,14 @@ export const FlagGame = ({ difficulty, onBack }: FlagGameProps) => {
           <Button
             onClick={showHintToast}
             variant="outline"
-            className="mb-8"
+            className="mb-16"
             disabled={showHint}
           >
             {showHint ? "Hint Shown" : "Show Hint"}
           </Button>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {options.map((flag) => (
             <button
               key={flag.code}
