@@ -45,9 +45,9 @@ export const FlagGame = ({ difficulty, onBack }: FlagGameProps) => {
   const handleGuess = (flag: Flag) => {
     setAttempts(prev => prev + 1);
     
-    const toastOptions = {
+    const toastOptions: Partial<ToastT> = {
       duration: 2000,
-      position: 'bottom-center',
+      position: "bottom",
       style: {
         marginBottom: '4rem',
         marginTop: '2rem'
@@ -79,7 +79,7 @@ export const FlagGame = ({ difficulty, onBack }: FlagGameProps) => {
       setShowHint(true);
       toast.info(currentFlag.hint, {
         duration: 4000,
-        position: 'bottom-center',
+        position: "bottom",
         style: {
           marginBottom: '4rem',
           marginTop: '2rem'
