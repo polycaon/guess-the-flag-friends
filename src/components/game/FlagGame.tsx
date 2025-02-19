@@ -18,6 +18,7 @@ export const FlagGame = ({ difficulty, onBack }: FlagGameProps) => {
   const [score, setScore] = useState(0);
   const [attempts, setAttempts] = useState(0);
   const [showHint, setShowHint] = useState(false);
+  const [usedFlags, setUsedFlags] = useState<Set<string>>(new Set());
 
   const shuffleArray = (array: Flag[]) => {
     const shuffled = [...array];
@@ -30,15 +31,31 @@ export const FlagGame = ({ difficulty, onBack }: FlagGameProps) => {
 
   const generateQuestion = () => {
     const flagPool = COUNTRIES[difficulty];
-    const shuffledFlags = shuffleArray(flagPool);
-    const correctFlag = shuffledFlags[0];
-    const wrongOptions = shuffledFlags.slice(1, 4);
-    setCurrentFlag(correctFlag);
-    setOptions(shuffleArray([correctFlag, ...wrongOptions]));
+    // Filter out already used flags
+    const availableFlags = flagPool.filter(flag => !usedFlags.has(flag.code));
+    
+    // If we've used all flags, reset the used flags
+    if (availableFlags.length < 4) {
+      setUsedFlags(new Set());
+      const shuffledFlags = shuffleArray(flagPool);
+      const correctFlag = shuffledFlags[0];
+      const wrongOptions = shuffledFlags.slice(1, 4);
+      setCurrentFlag(correctFlag);
+      setOptions(shuffleArray([correctFlag, ...wrongOptions]));
+    } else {
+      const shuffledFlags = shuffleArray(availableFlags);
+      const correctFlag = shuffledFlags[0];
+      const wrongOptions = shuffledFlags.slice(1, 4);
+      setCurrentFlag(correctFlag);
+      setOptions(shuffleArray([correctFlag, ...wrongOptions]));
+      // Add the correct flag to used flags
+      setUsedFlags(prev => new Set([...prev, correctFlag.code]));
+    }
     setShowHint(false);
   };
 
   useEffect(() => {
+    setUsedFlags(new Set());
     generateQuestion();
   }, [difficulty]);
 
@@ -49,8 +66,7 @@ export const FlagGame = ({ difficulty, onBack }: FlagGameProps) => {
       duration: 2000,
       position: "top-center",
       style: {
-        marginBottom: '4rem',
-        marginTop: '2rem'
+        marginTop: '-8rem'
       }
     };
     
@@ -81,8 +97,7 @@ export const FlagGame = ({ difficulty, onBack }: FlagGameProps) => {
         duration: 4000,
         position: "top-center",
         style: {
-          marginBottom: '4rem',
-          marginTop: '2rem'
+          marginTop: '-8rem'
         },
         className: "text-xl font-bold bg-blue-100 border-2 border-blue-500 rounded-xl shadow-lg p-4"
       });
@@ -147,6 +162,7 @@ export const FlagGame = ({ difficulty, onBack }: FlagGameProps) => {
           onClick={() => {
             setScore(0);
             setAttempts(0);
+            setUsedFlags(new Set());
             generateQuestion();
           }}
           variant="outline"
