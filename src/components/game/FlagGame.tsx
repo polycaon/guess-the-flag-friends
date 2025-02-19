@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { toast } from 'sonner';
 import { Button } from "@/components/ui/button";
@@ -54,14 +55,14 @@ export const FlagGame = ({ difficulty, onBack }: FlagGameProps) => {
       toast.success("Correct! Well done!", {
         duration: 2000,
         position: "bottom-center",
-        className: "text-xl font-bold bg-green-100 border-2 border-green-500 rounded-xl shadow-lg p-4"
+        className: "text-xl font-bold bg-green-100 border-2 border-green-500 rounded-xl shadow-lg p-4 mt-4"
       });
       generateQuestion();
     } else {
       toast.error("Try again!", {
         duration: 2000,
         position: "bottom-center",
-        className: "text-xl font-bold bg-red-100 border-2 border-red-500 rounded-xl shadow-lg p-4"
+        className: "text-xl font-bold bg-red-100 border-2 border-red-500 rounded-xl shadow-lg p-4 mt-4"
       });
     }
   };
@@ -72,7 +73,7 @@ export const FlagGame = ({ difficulty, onBack }: FlagGameProps) => {
       toast.info(currentFlag.hint, {
         duration: 4000,
         position: "bottom-center",
-        className: "text-xl font-bold bg-blue-100 border-2 border-blue-500 rounded-xl shadow-lg p-4"
+        className: "text-xl font-bold bg-blue-100 border-2 border-blue-500 rounded-xl shadow-lg p-4 mt-4"
       });
     }
   };
@@ -104,14 +105,14 @@ export const FlagGame = ({ difficulty, onBack }: FlagGameProps) => {
           <Button
             onClick={showHintToast}
             variant="outline"
-            className="mb-4"
+            className="mb-8"
             disabled={showHint}
           >
             {showHint ? "Hint Shown" : "Show Hint"}
           </Button>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
           {options.map((flag) => (
             <button
               key={flag.code}
