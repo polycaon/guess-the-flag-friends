@@ -54,14 +54,14 @@ export const FlagGame = ({ difficulty, onBack }: FlagGameProps) => {
       toast.success("Correct! Well done!", {
         duration: 2000,
         position: "bottom-center",
-        className: "text-xl font-bold"
+        className: "text-xl font-bold bg-green-100 border-2 border-green-500 rounded-xl shadow-lg p-4"
       });
       generateQuestion();
     } else {
       toast.error("Try again!", {
         duration: 2000,
         position: "bottom-center",
-        className: "text-xl font-bold"
+        className: "text-xl font-bold bg-red-100 border-2 border-red-500 rounded-xl shadow-lg p-4"
       });
     }
   };
@@ -72,7 +72,7 @@ export const FlagGame = ({ difficulty, onBack }: FlagGameProps) => {
       toast.info(currentFlag.hint, {
         duration: 4000,
         position: "bottom-center",
-        className: "text-xl font-bold"
+        className: "text-xl font-bold bg-blue-100 border-2 border-blue-500 rounded-xl shadow-lg p-4"
       });
     }
   };
