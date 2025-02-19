@@ -1,3 +1,4 @@
+
 import { Flag } from "@/types/game";
 
 export const COUNTRIES: Record<string, Flag[]> = {
@@ -28,25 +29,17 @@ export const COUNTRIES: Record<string, Flag[]> = {
     { name: "Switzerland", code: "ch", hint: "Known for chocolate and Alps" },
     { name: "Belgium", code: "be", hint: "Famous for waffles" },
     { name: "Portugal", code: "pt", hint: "Famous for port wine" },
-    { name: "Indonesia", code: "id", hint: "Largest archipelago country" },
-    { name: "Saudi Arabia", code: "sa", hint: "Land of the Two Holy Mosques" },
-    { name: "United Arab Emirates", code: "ae", hint: "Home of the Burj Khalifa" },
-    { name: "Israel", code: "il", hint: "Land of milk and honey" },
-    { name: "Pakistan", code: "pk", hint: "Land of five rivers" },
-    { name: "Iran", code: "ir", hint: "Ancient Persia" },
-    { name: "Qatar", code: "qa", hint: "Pearl of the Gulf" },
-    { name: "Kuwait", code: "kw", hint: "Oil-rich emirate" },
-    { name: "Oman", code: "om", hint: "Land of frankincense" }
-  ],
-  moderate: [
-    { name: "Argentina", code: "ar", hint: "Land of tango" },
-    { name: "Ireland", code: "ie", hint: "Emerald Isle" },
-    { name: "New Zealand", code: "nz", hint: "Land of the Kiwis" },
-    { name: "Portugal", code: "pt", hint: "Famous for port wine" },
     { name: "Austria", code: "at", hint: "Home of Mozart" },
     { name: "Denmark", code: "dk", hint: "Home of LEGO" },
     { name: "Finland", code: "fi", hint: "Land of the Northern Lights" },
-    { name: "Norway", code: "no", hint: "Land of the fjords" },
+    { name: "Norway", code: "no", hint: "Land of the fjords" }
+  ],
+  moderate: [
+    // Include all easy countries plus these additional ones
+    ...COUNTRIES.easy,
+    { name: "Argentina", code: "ar", hint: "Land of tango" },
+    { name: "Ireland", code: "ie", hint: "Emerald Isle" },
+    { name: "New Zealand", code: "nz", hint: "Land of the Kiwis" },
     { name: "Singapore", code: "sg", hint: "Garden City" },
     { name: "Malaysia", code: "my", hint: "Home of the Petronas Towers" },
     { name: "Philippines", code: "ph", hint: "Pearl of the Orient" },
@@ -59,23 +52,15 @@ export const COUNTRIES: Record<string, Flag[]> = {
     { name: "Romania", code: "ro", hint: "Home of Dracula's castle" },
     { name: "Hungary", code: "hu", hint: "Known for goulash" },
     { name: "Morocco", code: "ma", hint: "Known for its bazaars" },
-    { name: "Serbia", code: "rs", hint: "Balkan crossroads" },
-    { name: "Bulgaria", code: "bg", hint: "Land of roses" },
-    { name: "Ecuador", code: "ec", hint: "Named after the equator" },
-    { name: "Venezuela", code: "ve", hint: "Land of Angel Falls" },
-    { name: "Paraguay", code: "py", hint: "Heart of South America" },
-    { name: "Bolivia", code: "bo", hint: "Land of salt flats" },
-    { name: "Panama", code: "pa", hint: "Famous for its canal" },
-    { name: "Costa Rica", code: "cr", hint: "Pure life (Pura vida)" },
-    { name: "Honduras", code: "hn", hint: "Land of five stars" },
-    { name: "El Salvador", code: "sv", hint: "Land of volcanoes" },
-    { name: "Nicaragua", code: "ni", hint: "Land of lakes and volcanoes" },
-    { name: "Guatemala", code: "gt", hint: "Land of eternal spring" },
-    { name: "Dominican Republic", code: "do", hint: "First New World settlement" },
-    { name: "Haiti", code: "ht", hint: "Pearl of the Antilles" },
-    { name: "Jamaica", code: "jm", hint: "Land of wood and water" }
+    { name: "Indonesia", code: "id", hint: "Largest archipelago country" },
+    { name: "Pakistan", code: "pk", hint: "Land of five rivers" },
+    { name: "Iran", code: "ir", hint: "Ancient Persia" },
+    { name: "Saudi Arabia", code: "sa", hint: "Land of the Two Holy Mosques" },
+    { name: "United Arab Emirates", code: "ae", hint: "Home of the Burj Khalifa" }
   ],
   difficult: [
+    // Include all moderate countries plus these additional ones
+    ...COUNTRIES.moderate,
     { name: "Kazakhstan", code: "kz", hint: "Largest landlocked country" },
     { name: "Uruguay", code: "uy", hint: "Known for mate tea" },
     { name: "Croatia", code: "hr", hint: "Land of a thousand islands" },
@@ -90,19 +75,11 @@ export const COUNTRIES: Record<string, Flag[]> = {
     { name: "Armenia", code: "am", hint: "Land of churches" },
     { name: "Moldova", code: "md", hint: "Known for wine cellars" },
     { name: "Montenegro", code: "me", hint: "Black Mountain" },
-    { name: "North Macedonia", code: "mk", hint: "Land of lakes" },
-    { name: "Uzbekistan", code: "uz", hint: "Heart of the Silk Road" },
-    { name: "Kyrgyzstan", code: "kg", hint: "Land of celestial mountains" },
-    { name: "Tajikistan", code: "tj", hint: "Roof of the world" },
-    { name: "Turkmenistan", code: "tm", hint: "Land of the Karakum" },
-    { name: "Bangladesh", code: "bd", hint: "Land of rivers" },
-    { name: "Nepal", code: "np", hint: "Land of Mount Everest" },
-    { name: "Sri Lanka", code: "lk", hint: "Pearl of the Indian Ocean" },
-    { name: "Myanmar", code: "mm", hint: "Land of golden pagodas" },
-    { name: "Cambodia", code: "kh", hint: "Kingdom of wonder" },
-    { name: "Laos", code: "la", hint: "Land of a million elephants" }
+    { name: "North Macedonia", code: "mk", hint: "Land of lakes" }
   ],
   hard: [
+    // Include all difficult countries plus these additional ones
+    ...COUNTRIES.difficult,
     { name: "Albania", code: "al", hint: "Land of eagles" },
     { name: "Bosnia and Herzegovina", code: "ba", hint: "Land of bridges" },
     { name: "Cyprus", code: "cy", hint: "Island of Aphrodite" },
@@ -117,14 +94,18 @@ export const COUNTRIES: Record<string, Flag[]> = {
     { name: "Brunei", code: "bn", hint: "Abode of peace" },
     { name: "East Timor", code: "tl", hint: "Land of the rising sun" },
     { name: "Maldives", code: "mv", hint: "Garland of islands" },
-    { name: "Bahrain", code: "bh", hint: "Pearl of the Gulf" },
-    { name: "Jordan", code: "jo", hint: "Land of ancient Petra" },
-    { name: "Lebanon", code: "lb", hint: "Land of cedars" },
-    { name: "Mongolia", code: "mn", hint: "Land of eternal blue sky" },
-    { name: "Yemen", code: "ye", hint: "Arabia Felix" },
-    { name: "Afghanistan", code: "af", hint: "Heart of Asia" }
+    { name: "Bahrain", code: "bh", hint: "Pearl of the Gulf" }
   ],
   impossible: [
+    // Include all hard countries plus these additional ones
+    ...COUNTRIES.hard,
+    { name: "Kiribati", code: "ki", hint: "Pacific island nation" },
+    { name: "Tuvalu", code: "tv", hint: "Smallest UN member state" },
+    { name: "Vanuatu", code: "vu", hint: "South Pacific archipelago" },
+    { name: "Palau", code: "pw", hint: "Known for jellyfish lake" },
+    { name: "Nauru", code: "nr", hint: "Smallest island nation" },
+    { name: "Marshall Islands", code: "mh", hint: "Made of coral atolls" },
+    { name: "Micronesia", code: "fm", hint: "Scattered island nation" },
     { name: "Comoros", code: "km", hint: "Islands of the moon" },
     { name: "Djibouti", code: "dj", hint: "Horn of Africa" },
     { name: "Eritrea", code: "er", hint: "Land of the Red Sea" },
@@ -137,13 +118,6 @@ export const COUNTRIES: Record<string, Flag[]> = {
     { name: "Congo", code: "cg", hint: "Land of the mighty river" },
     { name: "DR Congo", code: "cd", hint: "Land of copper and cobalt" },
     { name: "Equatorial Guinea", code: "gq", hint: "African crossroads" },
-    { name: "Gabon", code: "ga", hint: "Land of the forest" },
-    { name: "Sao Tome and Principe", code: "st", hint: "Chocolate islands" },
-    { name: "Burundi", code: "bi", hint: "Heart of Africa" },
-    { name: "Rwanda", code: "rw", hint: "Land of a thousand hills" },
-    { name: "Seychelles", code: "sc", hint: "Garden of Eden" },
-    { name: "Tanzania", code: "tz", hint: "Land of Kilimanjaro" },
-    { name: "Uganda", code: "ug", hint: "Pearl of Africa" },
-    { name: "Kenya", code: "ke", hint: "Land of safaris" }
+    { name: "Gabon", code: "ga", hint: "Land of the forest" }
   ]
 };
