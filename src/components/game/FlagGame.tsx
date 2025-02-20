@@ -1,6 +1,5 @@
-
 import { useState, useEffect } from 'react';
-import { toast, type ToastT } from 'sonner';
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import confetti from 'canvas-confetti';
@@ -31,10 +30,8 @@ export const FlagGame = ({ difficulty, onBack }: FlagGameProps) => {
 
   const generateQuestion = () => {
     const flagPool = COUNTRIES[difficulty];
-    // Filter out already used flags
     const availableFlags = flagPool.filter(flag => !usedFlags.has(flag.code));
     
-    // If we've used all flags, reset the used flags
     if (availableFlags.length < 4) {
       setUsedFlags(new Set());
       const shuffledFlags = shuffleArray(flagPool);
@@ -48,7 +45,6 @@ export const FlagGame = ({ difficulty, onBack }: FlagGameProps) => {
       const wrongOptions = shuffledFlags.slice(1, 4);
       setCurrentFlag(correctFlag);
       setOptions(shuffleArray([correctFlag, ...wrongOptions]));
-      // Add the correct flag to used flags
       setUsedFlags(prev => new Set([...prev, correctFlag.code]));
     }
   };
@@ -69,23 +65,13 @@ export const FlagGame = ({ difficulty, onBack }: FlagGameProps) => {
       });
       setScore(prev => prev + 1);
       toast.success("Correct! Well done!", {
-        duration: 2000,
-        position: "top-center",
-        style: {
-          marginTop: '-8rem'
-        },
-        className: "text-xl font-bold bg-green-100 border-2 border-green-500 rounded-xl shadow-lg p-4"
+        position: "top-center"
       });
       setShowHint(false);
       generateQuestion();
     } else {
       toast.error("Try again!", {
-        duration: 2000,
-        position: "top-center",
-        style: {
-          marginTop: '-8rem'
-        },
-        className: "text-xl font-bold bg-red-100 border-2 border-red-500 rounded-xl shadow-lg p-4"
+        position: "top-center"
       });
     }
   };
@@ -94,12 +80,8 @@ export const FlagGame = ({ difficulty, onBack }: FlagGameProps) => {
     if (currentFlag?.hint) {
       setShowHint(true);
       toast.info(currentFlag.hint, {
-        duration: 4000,
         position: "top-center",
-        style: {
-          marginTop: '-8rem'
-        },
-        className: "text-xl font-bold bg-blue-100 border-2 border-blue-500 rounded-xl shadow-lg p-4"
+        duration: 4000
       });
     }
   };
