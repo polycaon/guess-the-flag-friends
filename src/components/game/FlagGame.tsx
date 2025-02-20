@@ -16,9 +16,9 @@ export const FlagGame = ({ difficulty, onBack }: FlagGameProps) => {
   const [currentFlag, setCurrentFlag] = useState<Flag | null>(null);
   const [options, setOptions] = useState<Flag[]>([]);
   const [score, setScore] = useState(0);
-  const [attempts, setAttempts] = useState(0);
-  const [showHint, setShowHint] = useState(false);
   const [usedFlags, setUsedFlags] = useState<Set<string>>(new Set());
+  const [showHint, setShowHint] = useState(false);
+  const totalFlags = COUNTRIES[difficulty].length;
 
   const shuffleArray = (array: Flag[]) => {
     const shuffled = [...array];
@@ -51,25 +51,16 @@ export const FlagGame = ({ difficulty, onBack }: FlagGameProps) => {
       // Add the correct flag to used flags
       setUsedFlags(prev => new Set([...prev, correctFlag.code]));
     }
-    setShowHint(false);
   };
 
   useEffect(() => {
+    setScore(0);
     setUsedFlags(new Set());
+    setShowHint(false);
     generateQuestion();
   }, [difficulty]);
 
   const handleGuess = (flag: Flag) => {
-    setAttempts(prev => prev + 1);
-    
-    const toastOptions: Partial<ToastT> = {
-      duration: 2000,
-      position: "top-center",
-      style: {
-        marginTop: '-8rem'
-      }
-    };
-    
     if (flag.code === currentFlag?.code) {
       confetti({
         particleCount: 100,
@@ -78,13 +69,22 @@ export const FlagGame = ({ difficulty, onBack }: FlagGameProps) => {
       });
       setScore(prev => prev + 1);
       toast.success("Correct! Well done!", {
-        ...toastOptions,
+        duration: 2000,
+        position: "top-center",
+        style: {
+          marginTop: '-8rem'
+        },
         className: "text-xl font-bold bg-green-100 border-2 border-green-500 rounded-xl shadow-lg p-4"
       });
+      setShowHint(false);
       generateQuestion();
     } else {
       toast.error("Try again!", {
-        ...toastOptions,
+        duration: 2000,
+        position: "top-center",
+        style: {
+          marginTop: '-8rem'
+        },
         className: "text-xl font-bold bg-red-100 border-2 border-red-500 rounded-xl shadow-lg p-4"
       });
     }
@@ -111,7 +111,7 @@ export const FlagGame = ({ difficulty, onBack }: FlagGameProps) => {
           {difficulty} Level
         </h2>
         <p className="text-lg font-medium">
-          Score: {score} / {attempts}
+          Score: {score} / {totalFlags}
         </p>
       </div>
 
@@ -161,8 +161,8 @@ export const FlagGame = ({ difficulty, onBack }: FlagGameProps) => {
         <Button 
           onClick={() => {
             setScore(0);
-            setAttempts(0);
             setUsedFlags(new Set());
+            setShowHint(false);
             generateQuestion();
           }}
           variant="outline"
