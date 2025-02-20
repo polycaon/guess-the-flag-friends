@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
@@ -87,8 +88,8 @@ export const FlagGame = ({ difficulty, onBack }: FlagGameProps) => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-4 space-y-8">
-      <div className="text-center mb-8">
+    <div className="min-h-screen flex flex-col items-center justify-center p-4 space-y-4">
+      <div className="text-center mb-4">
         <h2 className="text-2xl font-bold mb-2 capitalize">
           {difficulty} Level
         </h2>
@@ -97,8 +98,8 @@ export const FlagGame = ({ difficulty, onBack }: FlagGameProps) => {
         </p>
       </div>
 
-      <Card className="w-full max-w-2xl p-6 fade-scale-enter">
-        <div className="text-center mb-6">
+      <Card className="w-full max-w-xl p-4 fade-scale-enter">
+        <div className="text-center mb-4">
           <h2 className="text-2xl font-semibold mb-4">
             Which country does this flag belong to?
           </h2>
@@ -106,21 +107,21 @@ export const FlagGame = ({ difficulty, onBack }: FlagGameProps) => {
             <img
               src={`https://flagcdn.com/w320/${currentFlag.code}.png`}
               alt={`Flag of ${currentFlag.name}`}
-              className="mx-auto rounded-xl shadow-lg mb-6 floating"
-              style={{ maxWidth: '320px' }}
+              className="mx-auto rounded-xl shadow-lg mb-4 floating"
+              style={{ maxWidth: '280px' }}
             />
           )}
           <Button
             onClick={showHintToast}
             variant="outline"
-            className="mb-16"
+            className="mb-6"
             disabled={showHint}
           >
             {showHint ? "Hint Shown" : "Show Hint"}
           </Button>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {options.map((flag) => (
             <button
               key={flag.code}
@@ -133,7 +134,7 @@ export const FlagGame = ({ difficulty, onBack }: FlagGameProps) => {
         </div>
       </Card>
 
-      <div className="flex gap-4">
+      <div className="flex gap-4 mt-4">
         <Button 
           onClick={onBack}
           variant="outline"
