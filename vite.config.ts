@@ -10,7 +10,7 @@ export default defineConfig(({ mode }) => ({
     host: "::",
     port: 8080,
   },
-  base: '/', // Ensures assets are loaded from the correct path
+  base: mode === 'production' ? '/flag-game/' : '/', // Update this line based on your Hostinger subdirectory
   plugins: [
     react(),
     mode === 'development' &&
@@ -21,4 +21,10 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    outDir: 'dist',
+    assetsDir: 'assets',
+    sourcemap: false,
+    emptyOutDir: true,
+  }
 }));
