@@ -10,7 +10,7 @@ export default defineConfig(({ mode }) => ({
     host: "::",
     port: 8080,
   },
-  base: mode === 'production' ? '/flag-game/' : '/', // Update this line based on your Hostinger subdirectory
+  base: '/', // Base URL set to root since we're deploying to domain root
   plugins: [
     react(),
     mode === 'development' &&
