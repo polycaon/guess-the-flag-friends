@@ -18,6 +18,7 @@ export const FlagGame = ({ difficulty, onBack }: FlagGameProps) => {
   const [score, setScore] = useState(0);
   const [usedFlags, setUsedFlags] = useState<Set<string>>(new Set());
   const [showHint, setShowHint] = useState(false);
+  const [imageError, setImageError] = useState(false);
   const totalFlags = COUNTRIES[difficulty].length;
 
   const shuffleArray = (array: Flag[]) => {
@@ -32,6 +33,7 @@ export const FlagGame = ({ difficulty, onBack }: FlagGameProps) => {
   const generateQuestion = () => {
     const flagPool = COUNTRIES[difficulty];
     const availableFlags = flagPool.filter(flag => !usedFlags.has(flag.code));
+    setImageError(false);
     
     if (availableFlags.length < 4) {
       setUsedFlags(new Set());
@@ -54,6 +56,7 @@ export const FlagGame = ({ difficulty, onBack }: FlagGameProps) => {
     setScore(0);
     setUsedFlags(new Set());
     setShowHint(false);
+    setImageError(false);
     generateQuestion();
   }, [difficulty]);
 
@@ -87,6 +90,11 @@ export const FlagGame = ({ difficulty, onBack }: FlagGameProps) => {
     }
   };
 
+  const handleImageError = () => {
+    setImageError(true);
+    generateQuestion(); // Try another flag if current one fails to load
+  };
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4 space-y-4">
       <div className="text-center mb-4">
@@ -103,12 +111,13 @@ export const FlagGame = ({ difficulty, onBack }: FlagGameProps) => {
           <h2 className="text-2xl font-semibold mb-4">
             Which country does this flag belong to?
           </h2>
-          {currentFlag && (
+          {currentFlag && !imageError && (
             <img
               src={`https://flagcdn.com/w320/${currentFlag.code}.png`}
               alt={`Flag of ${currentFlag.name}`}
               className="mx-auto rounded-xl shadow-lg mb-4 floating"
               style={{ maxWidth: '280px' }}
+              onError={handleImageError}
             />
           )}
           <Button
