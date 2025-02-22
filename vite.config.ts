@@ -9,7 +9,7 @@ export default defineConfig(({ mode }) => ({
     host: "::",
     port: 8080,
   },
-  base: './', // Changed to relative path for better compatibility
+  base: "./",
   plugins: [
     react(),
     mode === 'development' &&
@@ -32,3 +32,4 @@ export default defineConfig(({ mode }) => ({
     }
   }
 }));
+
